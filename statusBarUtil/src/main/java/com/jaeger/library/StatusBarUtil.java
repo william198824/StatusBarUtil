@@ -440,7 +440,7 @@ public class StatusBarUtil {
      *
      * @param activity       需要设置的activity
      * @param statusBarAlpha 状态栏透明度
-     * @param needOffsetView 需要向下偏移的 View
+     * @param needOffsetView 需要增加MarginTop的View,一般是ToolBar
      */
     public static void setTranslucentForImageView(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
         View needOffsetView) {
@@ -457,6 +457,33 @@ public class StatusBarUtil {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(activity),
                 layoutParams.rightMargin, layoutParams.bottomMargin);
+            needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, true);
+        }
+    }
+
+    /**
+     * 为头部是图片的界面设置状态栏透明
+     *
+     * @param activity       需要设置的activity
+     * @param statusBarAlpha 状态栏透明度
+     * @param needOffsetView 需要增加PaddingTop的View，一般是ToolBar
+     */
+    public static void setTranslucentForImageByAddPaddingTop(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
+                                                  View needOffsetView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        setTransparentForWindow(activity);
+        addTranslucentView(activity, statusBarAlpha);
+        if (needOffsetView != null) {
+            Object haveSetOffset = needOffsetView.getTag(TAG_KEY_HAVE_SET_OFFSET);
+            if (haveSetOffset != null && (Boolean) haveSetOffset) {
+                return;
+            }
+
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
+            layoutParams.height += getStatusBarHeight(activity);
+            needOffsetView.setPadding(needOffsetView.getPaddingLeft(),needOffsetView.getPaddingTop()+getStatusBarHeight(activity),needOffsetView.getPaddingRight(),needOffsetView.getPaddingBottom());
             needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, true);
         }
     }

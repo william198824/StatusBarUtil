@@ -18,6 +18,7 @@ import com.r0adkll.slidr.Slidr;
  * GitHub: https://github.com/laobie
  */
 public class ImageViewActivity extends BaseActivity {
+
     private Toolbar mToolbar;
     private View mViewNeedOffset;
     private SeekBar mSbChangeAlpha;
@@ -32,7 +33,7 @@ public class ImageViewActivity extends BaseActivity {
         // 设置右滑动返回
         Slidr.attach(this);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mViewNeedOffset = findViewById(R.id.view_need_offset);
+//        mViewNeedOffset = findViewById(R.id.view_need_offset);
         mTvStatusAlpha = (TextView) findViewById(R.id.tv_status_alpha);
         mSbChangeAlpha = (SeekBar) findViewById(R.id.sb_change_alpha);
 
@@ -46,7 +47,7 @@ public class ImageViewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mAlpha = progress;
-                StatusBarUtil.setTranslucentForImageView(ImageViewActivity.this, mAlpha, mViewNeedOffset);
+                StatusBarUtil.setTranslucentForImageByAddPaddingTop(ImageViewActivity.this, mAlpha, mToolbar);
                 mTvStatusAlpha.setText(String.valueOf(mAlpha));
             }
 
@@ -65,8 +66,8 @@ public class ImageViewActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        mViewNeedOffset = findViewById(R.id.view_need_offset);
-        StatusBarUtil.setTranslucentForImageView(this, mViewNeedOffset);
+        mToolbar = findViewById(R.id.toolbar);
+        StatusBarUtil.setTranslucentForImageByAddPaddingTop(this,1, mToolbar);
     }
 
     @Override

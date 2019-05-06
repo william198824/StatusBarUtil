@@ -13,18 +13,19 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_monkey_king"/>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/view_need_offset"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <android.support.design.widget.CoordinatorLayout-->
+<!--        android:id="@+id/view_need_offset"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="#f00"-->
+<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+<!--            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+<!--        android:background="@android:color/transparent"-->
 
         <TextView
             android:id="@+id/tv_status_alpha"
@@ -33,7 +34,8 @@
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
-            tools:text="112"/>
+            tools:text="112"
+            android:background="#0f0"/>
 
         <SeekBar
             android:id="@+id/sb_change_alpha"
@@ -43,5 +45,13 @@
             android:layout_marginBottom="-64dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
-    </android.support.design.widget.CoordinatorLayout>
+<!--    </android.support.design.widget.CoordinatorLayout>-->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#f00"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 </RelativeLayout>
